@@ -22,7 +22,7 @@ public class SampleApp {
         ShoppingCart shoppingCart = new ShoppingCart(customer, products);
         Product product3 = new Product(30.0, "DIS_10_PRODUCT3", "product 3");
         shoppingCart.addProduct(product3);
-        System.out.println(shoppingCart.toString());
+        System.out.println(shoppingCart);
 
         Order order = shoppingCart.checkout();
         System.out.println(order.toString());

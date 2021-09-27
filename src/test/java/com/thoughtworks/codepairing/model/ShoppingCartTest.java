@@ -3,6 +3,7 @@ package com.thoughtworks.codepairing.model;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Collections;
 import java.util.List;
 
 import static java.util.Arrays.asList;
@@ -16,7 +17,7 @@ public class ShoppingCartTest {
     Customer customer;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         customer = new Customer("test");
     }
 
@@ -72,5 +73,23 @@ public class ShoppingCartTest {
         Order order = cart.checkout();
 
         assertEquals(6, order.getLoyaltyPoints());
+    }
+
+    @Test
+    public void shouldCalculatePriceFor20PercentDiscount() {
+        List<Product> products = Collections.singletonList(new Product(PRICE, "DIS_20_ABCD", PRODUCT));
+        ShoppingCart cart = new ShoppingCart(customer, products);
+        Order order = cart.checkout();
+
+        assertEquals(80.0, order.getTotalPrice(), 0.0);
+    }
+
+    @Test
+    public void shouldCalculateLoyaltyPointsFor20PercentDiscount() {
+        List<Product> products = Collections.singletonList(new Product(PRICE, "DIS_20_ABCD", PRODUCT));
+        ShoppingCart cart = new ShoppingCart(customer, products);
+        Order order = cart.checkout();
+
+        assertEquals(5, order.getLoyaltyPoints());
     }
 }

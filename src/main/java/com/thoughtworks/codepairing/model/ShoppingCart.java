@@ -28,6 +28,9 @@ public class ShoppingCart {
             } else if (product.getProductCode().startsWith("DIS_15")) {
                 discount = (product.getPrice() * 0.15);
                 loyaltyPointsEarned += (product.getPrice() / 15);
+            } else if (product.getProductCode().startsWith("DIS_20")) {
+                discount = (product.getPrice() * 0.20);
+                loyaltyPointsEarned += (product.getPrice() / 20);
             } else {
                 loyaltyPointsEarned += (product.getPrice() / 5);
             }
@@ -40,6 +43,6 @@ public class ShoppingCart {
 
     @Override
     public String toString() {
-        return "Customer: " + customer.getName() + "\n" + "Bought:  \n" + products.stream().map(p -> "- " + p.getName()+ ", "+p.getPrice()).collect(Collectors.joining("\n"));
+        return "Customer: " + customer.getName() + "\n" + "Bought:  \n" + products.stream().map(p -> "- " + p.getName() + ", " + p.getPrice()).collect(Collectors.joining("\n"));
     }
 }
