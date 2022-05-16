@@ -36,4 +36,19 @@ public class Product {
             totalPrice += this.getPrice() - discount;
         return totalPrice;
     }
+
+    public int getEarnedLoyaltyPoints() {
+        int loyaltyPointsEarned = 0;
+        if (this.getProductCode().startsWith("DIS_10")) {
+            loyaltyPointsEarned += (this.getPrice() / 10);
+        } else if (this.getProductCode().startsWith("DIS_15")) {
+            loyaltyPointsEarned += (this.getPrice() / 15);
+        } else if (this.getProductCode().startsWith("DIS_20")) {
+            loyaltyPointsEarned += (this.getPrice() / 20);
+        } else {
+            loyaltyPointsEarned += (this.getPrice() / 5);
+        }
+        return loyaltyPointsEarned;
+    }
+
 }

@@ -23,19 +23,11 @@ public class ShoppingCart {
     }
 
     private int calculateLoyaltyPoints(List<Product> products) {
-        int loyaltyPointsEarned = 0;
+        int totalLoyaltyPointsEarned = 0;
         for (Product product : products) {
-            if (product.getProductCode().startsWith("DIS_10")) {
-                loyaltyPointsEarned += (product.getPrice() / 10);
-            } else if (product.getProductCode().startsWith("DIS_15")) {
-                loyaltyPointsEarned += (product.getPrice() / 15);
-            } else if (product.getProductCode().startsWith("DIS_20")) {
-                loyaltyPointsEarned += (product.getPrice() / 20);
-            } else {
-                loyaltyPointsEarned += (product.getPrice() / 5);
-            }
+            totalLoyaltyPointsEarned = product.getEarnedLoyaltyPoints();
         }
-        return loyaltyPointsEarned;
+        return totalLoyaltyPointsEarned;
     }
 
     private double calculateTotalPrice(List<Product> products) {
