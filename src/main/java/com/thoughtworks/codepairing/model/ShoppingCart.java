@@ -17,25 +17,13 @@ public class ShoppingCart {
     }
 
     public Order checkout() {
-        double totalPrice = calculateTotalPrice(products);
-        int loyaltyPointsEarned = calculateLoyaltyPoints(products);
-        return new Order(totalPrice, loyaltyPointsEarned);
-    }
-
-    private int calculateLoyaltyPoints(List<Product> products) {
+        double totalPrice = 0;
         int totalLoyaltyPointsEarned = 0;
         for (Product product : products) {
-            totalLoyaltyPointsEarned = product.getEarnedLoyaltyPoints();
-        }
-        return totalLoyaltyPointsEarned;
-    }
-
-    private double calculateTotalPrice(List<Product> products) {
-        double totalPrice = 0;
-        for (Product product : products) {
             totalPrice += product.getDiscountedPrice();
+            totalLoyaltyPointsEarned += product.getEarnedLoyaltyPoints();
         }
-        return totalPrice;
+        return new Order(totalPrice, totalLoyaltyPointsEarned);
     }
 
     @Override
