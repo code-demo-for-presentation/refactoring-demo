@@ -17,6 +17,12 @@ public class ShoppingCart {
     }
 
     public Order checkout() {
+        double totalPrice = calculateTotalPrice(products);
+        int loyaltyPointsEarned = calculateLoyaltyPoints(products);
+        return new Order(totalPrice, loyaltyPointsEarned);
+    }
+
+    private int calculateLoyaltyPoints(List<Product> products) {
         int loyaltyPointsEarned = 0;
         for (Product product : products) {
             if (product.getProductCode().startsWith("DIS_10")) {
@@ -29,8 +35,7 @@ public class ShoppingCart {
                 loyaltyPointsEarned += (product.getPrice() / 5);
             }
         }
-        double totalPrice = calculateTotalPrice(products);
-        return new Order(totalPrice, loyaltyPointsEarned);
+        return loyaltyPointsEarned;
     }
 
     private double calculateTotalPrice(List<Product> products) {
