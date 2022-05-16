@@ -41,15 +41,7 @@ public class ShoppingCart {
     private double calculateTotalPrice(List<Product> products) {
         double totalPrice = 0;
         for (Product product : products) {
-            double discount = 0;
-            if (product.getProductCode().startsWith("DIS_10")) {
-                discount = (product.getPrice() * 0.1);
-            } else if (product.getProductCode().startsWith("DIS_15")) {
-                discount = (product.getPrice() * 0.15);
-            } else if (product.getProductCode().startsWith("DIS_20")) {
-                discount = (product.getPrice() * 0.20);
-            }
-            totalPrice += product.getPrice() - discount;
+            totalPrice += product.getDiscountedPrice();
         }
         return totalPrice;
     }
