@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class ShoppingCart {
-    private List<Product> products;
-    private Customer customer;
+    private final List<Product> products;
+    private final Customer customer;
 
     public ShoppingCart(Customer customer, List<Product> products) {
         this.customer = customer;
@@ -17,28 +17,36 @@ public class ShoppingCart {
     }
 
     public Order checkout() {
-        double totalPrice = 0;
-
         int loyaltyPointsEarned = 0;
         for (Product product : products) {
-            double discount = 0;
             if (product.getProductCode().startsWith("DIS_10")) {
-                discount = (product.getPrice() * 0.1);
                 loyaltyPointsEarned += (product.getPrice() / 10);
             } else if (product.getProductCode().startsWith("DIS_15")) {
-                discount = (product.getPrice() * 0.15);
                 loyaltyPointsEarned += (product.getPrice() / 15);
             } else if (product.getProductCode().startsWith("DIS_20")) {
-                discount = (product.getPrice() * 0.20);
                 loyaltyPointsEarned += (product.getPrice() / 20);
             } else {
                 loyaltyPointsEarned += (product.getPrice() / 5);
             }
+        }
+        double totalPrice = calculateTotalPrice(products);
+        return new Order(totalPrice, loyaltyPointsEarned);
+    }
 
+    private double calculateTotalPrice(List<Product> products) {
+        double totalPrice = 0;
+        for (Product product : products) {
+            double discount = 0;
+            if (product.getProductCode().startsWith("DIS_10")) {
+                discount = (product.getPrice() * 0.1);
+            } else if (product.getProductCode().startsWith("DIS_15")) {
+                discount = (product.getPrice() * 0.15);
+            } else if (product.getProductCode().startsWith("DIS_20")) {
+                discount = (product.getPrice() * 0.20);
+            }
             totalPrice += product.getPrice() - discount;
         }
-
-        return new Order(totalPrice, loyaltyPointsEarned);
+        return totalPrice;
     }
 
     @Override
