@@ -11,8 +11,8 @@ import java.util.List;
 
 public class SampleApp {
     public static void main(String[] args) {
-        Product product1 = new ProductWithDiscount10Percent(10.0, "PRODUCT1", "product 1");
-        Product product2 = new ProductWithDiscount10Percent(20.0, "PRODUCT2", "product 2");
+        Product product1 = new ProductWithDiscount10Percent(10.0, "product 1");
+        Product product2 = new ProductWithDiscount10Percent(20.0, "product 2");
 
         List<Product> products = new ArrayList<>();
         products.add(product1);
@@ -21,7 +21,7 @@ public class SampleApp {
         Customer customer = new Customer("A Customer");
 
         ShoppingCart shoppingCart = new ShoppingCart(customer, products);
-        Product product3 = new ProductWithDiscount10Percent(30.0, "PRODUCT3", "product 3");
+        Product product3 = new ProductWithDiscount10Percent(30.0, "product 3");
         shoppingCart.addProduct(product3);
         System.out.println(shoppingCart);
 

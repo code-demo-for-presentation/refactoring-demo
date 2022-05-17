@@ -1,8 +1,8 @@
 package com.thoughtworks.codepairing.model.product;
 
 public class ProductWithDiscount20Percent extends Product {
-    public ProductWithDiscount20Percent(double price, String productCode, String name) {
-        super(price, productCode, name);
+    public ProductWithDiscount20Percent(double price, String name) {
+        super(price, name);
     }
 
     @Override
