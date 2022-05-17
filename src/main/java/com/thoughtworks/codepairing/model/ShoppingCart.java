@@ -1,5 +1,7 @@
 package com.thoughtworks.codepairing.model;
 
+import com.thoughtworks.codepairing.model.product.Product;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
