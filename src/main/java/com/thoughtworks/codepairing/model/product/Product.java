@@ -1,12 +1,15 @@
 package com.thoughtworks.codepairing.model.product;
 
-public abstract class Product {
+public class Product {
     private final double price;
     private final String name;
 
-    public Product(double price, String name) {
+    private final ProductDiscountType productDiscountType;
+
+    public Product(double price, String name, ProductDiscountType productDiscountType) {
         this.price = price;
         this.name = name;
+        this.productDiscountType = productDiscountType;
     }
 
     public double getPrice() {
@@ -17,8 +20,12 @@ public abstract class Product {
         return name;
     }
 
-    public abstract double getDiscountedPrice();
+    public double getDiscountedPrice() {
+        return this.productDiscountType.getPriceRate() * this.getPrice();
+    }
 
-    public abstract int getEarnedLoyaltyPoints();
+    public int getEarnedLoyaltyPoints() {
+        return (int) (this.productDiscountType.getLoyaltyPointsRate() * this.getPrice());
+    }
 
 }

@@ -7,6 +7,7 @@ import org.junit.Test;
 import java.util.Collections;
 import java.util.List;
 
+import static com.thoughtworks.codepairing.model.product.ProductDiscountType.*;
 import static org.junit.Assert.assertEquals;
 
 public class ShoppingCartTest {
@@ -23,7 +24,7 @@ public class ShoppingCartTest {
 
     @Test
     public void shouldCalculatePriceWithNoDiscount() {
-        List<Product> products = Collections.singletonList(new ProductWithNoDiscount(PRICE, PRODUCT));
+        List<Product> products = Collections.singletonList(new Product(PRICE, PRODUCT, NO));
         ShoppingCart cart = new ShoppingCart(customer, products);
         Order order = cart.checkout();
 
@@ -32,7 +33,7 @@ public class ShoppingCartTest {
 
     @Test
     public void shouldCalculateLoyaltyPointsWithNoDiscount() {
-        List<Product> products = Collections.singletonList(new ProductWithNoDiscount(PRICE, PRODUCT));
+        List<Product> products = Collections.singletonList(new Product(PRICE, PRODUCT, NO));
         ShoppingCart cart = new ShoppingCart(customer, products);
         Order order = cart.checkout();
 
@@ -41,7 +42,7 @@ public class ShoppingCartTest {
 
     @Test
     public void shouldCalculatePriceFor10PercentDiscount() {
-        List<Product> products = Collections.singletonList(new ProductWithDiscount10Percent(PRICE, PRODUCT));
+        List<Product> products = Collections.singletonList(new Product(PRICE, PRODUCT, TEN));
         ShoppingCart cart = new ShoppingCart(customer, products);
         Order order = cart.checkout();
 
@@ -50,7 +51,7 @@ public class ShoppingCartTest {
 
     @Test
     public void shouldCalculateLoyaltyPointsFor10PercentDiscount() {
-        List<Product> products = Collections.singletonList(new ProductWithDiscount10Percent(PRICE, PRODUCT));
+        List<Product> products = Collections.singletonList(new Product(PRICE, PRODUCT, TEN));
         ShoppingCart cart = new ShoppingCart(customer, products);
         Order order = cart.checkout();
 
@@ -59,7 +60,7 @@ public class ShoppingCartTest {
 
     @Test
     public void shouldCalculatePriceFor15PercentDiscount() {
-        List<Product> products = Collections.singletonList(new ProductWithDiscount15Percent(PRICE, PRODUCT));
+        List<Product> products = Collections.singletonList(new Product(PRICE, PRODUCT, FIFTEEN));
         ShoppingCart cart = new ShoppingCart(customer, products);
         Order order = cart.checkout();
 
@@ -68,7 +69,7 @@ public class ShoppingCartTest {
 
     @Test
     public void shouldCalculateLoyaltyPointsFor15PercentDiscount() {
-        List<Product> products = Collections.singletonList(new ProductWithDiscount15Percent(PRICE, PRODUCT));
+        List<Product> products = Collections.singletonList(new Product(PRICE, PRODUCT, FIFTEEN));
         ShoppingCart cart = new ShoppingCart(customer, products);
         Order order = cart.checkout();
 
@@ -77,7 +78,7 @@ public class ShoppingCartTest {
 
     @Test
     public void shouldCalculatePriceFor20PercentDiscount() {
-        List<Product> products = Collections.singletonList(new ProductWithDiscount20Percent(PRICE, PRODUCT));
+        List<Product> products = Collections.singletonList(new Product(PRICE, PRODUCT, TWENTY));
         ShoppingCart cart = new ShoppingCart(customer, products);
         Order order = cart.checkout();
 
@@ -86,7 +87,7 @@ public class ShoppingCartTest {
 
     @Test
     public void shouldCalculateLoyaltyPointsFor20PercentDiscount() {
-        List<Product> products = Collections.singletonList(new ProductWithDiscount20Percent(PRICE, PRODUCT));
+        List<Product> products = Collections.singletonList(new Product(PRICE, PRODUCT, TWENTY));
         ShoppingCart cart = new ShoppingCart(customer, products);
         Order order = cart.checkout();
 
